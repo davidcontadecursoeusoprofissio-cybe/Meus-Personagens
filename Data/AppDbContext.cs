@@ -1,13 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using tccReladorioDeCriacao.Models;
 
 namespace tccReladorioDeCriacao
 {
-    public class AppDbContext
+    public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
+        {
+        }
+        public Dbset<Imaginario> Imaginarios { get; set; }
         
     }
 }
