@@ -8,7 +8,7 @@ namespace tccReladorioDeCriacao
         public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
         {
         }
-        public Dbset<Imaginario> Imaginarios { get; set; }
+        public DbSet<Imaginario> Imaginarios { get; set; }
         
     }
 }

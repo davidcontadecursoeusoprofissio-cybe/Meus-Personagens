@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext< AppDbContext>(options => options.UseSqlite("Data source=biblioteca.db"));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data source=biblioteca.db"));
 builder.Services.AddScoped<DiariodeCriacao>();
 
 var app = builder.Build();
