@@ -10,7 +10,7 @@ public class Imaginario
     public int numero { get; set; }
     public string Nome { get; set; }
     public int Idade { get; set; }
-    public int Ano { get; set; }
+    public double Ano { get; set; }
     public string Local { get; set; }
     public string DescricaoLocal { get; set; }
 
