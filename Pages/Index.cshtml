@@ -1,10 +1,42 @@
-﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
+﻿
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@page
+@model tccReladorioDeCriacao.Pages.IndexModel
+
+<h1>Meu Imaginário</h1>
+
+<div class="galeria">
+
+    @foreach (var imaginario in Model.Imaginarios)
+    {
+        <div class="card">
+
+            <a asp-page="/Detalhes" asp-route-id="@imaginario.Id">
+
+                @if (!string.IsNullOrEmpty(imaginario.Imagem))
+                {
+                    <img src="@imaginario.Imagem"
+                         alt="@imaginario.Nome"
+                         style="width:250px; height:250px; object-fit:cover;" />
+                }
+                else
+                {
+                    <div>Sem imagem</div>
+                }
+
+                <h2>@imaginario.Nome</h2>
+
+            </a>
+
+            <p>Número: @imaginario.numero</p>
+
+        </div>
+    }
+
 </div>
+
+
+
+
+
+

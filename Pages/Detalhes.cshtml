@@ -1,0 +1,122 @@
+
+
+@page "{id:int}"
+@model tccReladorioDeCriacao.Pages.DetalhesModel
+
+@if (Model.Imaginario != null)
+{
+    <h1>@Model.Imaginario.Nome</h1>
+
+    <h2>Imagem principal</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Imaginario.Imagem))
+    {
+        <img src="@Model.Imaginario.Imagem"
+             alt="@Model.Imaginario.Nome"
+             style="width:350px; height:350px; object-fit:cover;" />
+    }
+
+    <h2>Galeria de imagens</h2>
+
+    <div>
+        @foreach (var imagem in Model.Imaginario.Imagens)
+        {
+            <img src="@imagem.CaminhoImagem"
+                 alt="Imagem de @Model.Imaginario.Nome"
+                 style="width:180px; height:180px; object-fit:cover; margin:10px;" />
+        }
+    </div>
+
+    <hr />
+
+    <h2>Alterar imagens</h2>
+
+    <form method="post"
+          asp-page-handler="AtualizarImagens"
+          enctype="multipart/form-data">
+
+        <input type="hidden" asp-for="Id" />
+
+        <label>Nova imagem principal</label>
+        <input type="file"
+               asp-for="NovaImagemPrincipal"
+               accept="image/*" />
+
+        <br /><br />
+
+        <label>Adicionar imagens à galeria</label>
+        <input type="file"
+               asp-for="NovasImagens"
+               accept="image/*"
+               multiple />
+
+        <br /><br />
+
+        <button type="submit">Salvar imagens</button>
+    </form>
+
+    <hr />
+
+    <h2>Informações completas</h2>
+
+    <h3>Identificação</h3>
+    <p><strong>ID:</strong> @Model.Imaginario.Id</p>
+    <p><strong>Número:</strong> @Model.Imaginario.numero</p>
+    <p><strong>Nome:</strong> @Model.Imaginario.Nome</p>
+
+    <h3>Informações físicas</h3>
+    <p><strong>Altura:</strong> @Model.Imaginario.Altura</p>
+    <p><strong>Idade:</strong> @Model.Imaginario.Idade</p>
+    <p><strong>Ano:</strong> @Model.Imaginario.Ano</p>
+    <p><strong>Inteligência:</strong> @Model.Imaginario.Inteligencia</p>
+    <p><strong>Força:</strong> @Model.Imaginario.Força</p>
+    <p><strong>Velocidade:</strong> @Model.Imaginario.Velocidade</p>
+    <p><strong>Defesa:</strong> @Model.Imaginario.Defesa</p>
+    <p><strong>Poder:</strong> @Model.Imaginario.Poder</p>
+
+    <h3>Localização</h3>
+    <p><strong>Local:</strong> @Model.Imaginario.Local</p>
+    <p><strong>Descrição do local:</strong> @Model.Imaginario.DescricaoLocal</p>
+
+    <h3>História e contexto</h3>
+    <p><strong>Descrição:</strong> @Model.Imaginario.Descricao</p>
+    <p><strong>Contexto histórico:</strong> @Model.Imaginario.ContextoHistorico</p>
+    <p><strong>Descrição do contexto:</strong> @Model.Imaginario.DescricaContexto</p>
+
+    <h3>Ponto fraco e morte</h3>
+    <p><strong>Ponto fraco:</strong> @Model.Imaginario.PontoFraco</p>
+    <p><strong>Descrição do ponto fraco:</strong> @Model.Imaginario.DescricaoPontoFraco</p>
+    <p><strong>Morte:</strong> @Model.Imaginario.Morte</p>
+    <p><strong>Descrição da morte:</strong> @Model.Imaginario.DescricaoMorte</p>
+
+    <h3>Características físicas detalhadas</h3>
+    <p><strong>Descrição dos pontos físicos:</strong> @Model.Imaginario.DescricaodosPontosFisicos</p>
+
+    <h3>Poderes</h3>
+    <p><strong>Poder de ataque:</strong> @Model.Imaginario.PoderdeAtaque</p>
+    <p><strong>Poder de defesa:</strong> @Model.Imaginario.PoderdeDefesa</p>
+    <p><strong>Poder de velocidade:</strong> @Model.Imaginario.PoderdeVelocidade</p>
+    <p><strong>Tipo de poderes:</strong> @Model.Imaginario.TipodePoderes</p>
+    <p><strong>Limitações dos poderes:</strong> @Model.Imaginario.LimitidosPoderes</p>
+    <p><strong>Poder total:</strong> @Model.Imaginario.PoderTotal</p>
+    <p><strong>Descrição dos poderes:</strong> @Model.Imaginario.DescricaodosPoderes</p>
+
+    <h3>Informações de criação</h3>
+    <p><strong>Nome do criador:</strong> @Model.Imaginario.NomedoCriador</p>
+    <p><strong>Data de criação:</strong> @Model.Imaginario.DatadeCriacao</p>
+    <p><strong>Mundo em que se passa:</strong> @Model.Imaginario.MundoemQuesePassar</p>
+
+    <a asp-page="/Index">Voltar à página principal</a>
+}
+else
+{
+    <h2>Imaginário não encontrado.</h2>
+    <a asp-page="/Index">Voltar</a>
+}
+
+
+
+
+
+
+
