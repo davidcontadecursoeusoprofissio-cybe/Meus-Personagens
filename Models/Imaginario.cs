@@ -51,4 +51,6 @@ public class Imaginario
 
 
     public string? Imagem { get; set; }
+
+    public List<ImagemImaginario> Imagens { get; set;  } = new List<ImagemImaginario>();
 }

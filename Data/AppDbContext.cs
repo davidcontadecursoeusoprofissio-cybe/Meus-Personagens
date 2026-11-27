@@ -9,6 +9,7 @@ namespace tccReladorioDeCriacao
         {
         }
         public DbSet<Imaginario> Imaginarios { get; set; }
+        public DbSet<ImagemImaginario> ImagensImaginarios { get; set; }
         
     }
 }
