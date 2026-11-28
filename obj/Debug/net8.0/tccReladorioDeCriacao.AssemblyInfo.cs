@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tccReladorioDeCriacao")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03dff7c74f2349842ddc225590ed1c284480e569")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dffb129c68a98b8868febaac77ce98178ef83f13")]
 [assembly: System.Reflection.AssemblyProductAttribute("tccReladorioDeCriacao")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tccReladorioDeCriacao")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

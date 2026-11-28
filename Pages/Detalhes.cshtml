@@ -1,5 +1,7 @@
 
 
+
+
 @page "{id:int}"
 @model tccReladorioDeCriacao.Pages.DetalhesModel
 
@@ -21,90 +23,187 @@
     <div>
         @foreach (var imagem in Model.Imaginario.Imagens)
         {
-            <img src="@imagem.CaminhoImagem"
-                 alt="Imagem de @Model.Imaginario.Nome"
-                 style="width:180px; height:180px; object-fit:cover; margin:10px;" />
+            <div style="display:inline-block; margin:10px;">
+
+                <img src="@imagem.CaminhoImagem"
+                     alt="Imagem de @Model.Imaginario.Nome"
+                     style="width:180px; height:180px; object-fit:cover;" />
+
+                <form method="post"
+                      asp-page-handler="EditarImagem"
+                      enctype="multipart/form-data">
+
+                    <input type="hidden" name="ImagemId" value="@imagem.Id" />
+                    <input type="file" name="NovaImagemGaleria" accept="image/*" required />
+
+                    <button type="submit">Substituir imagem</button>
+                </form>
+
+                <form method="post" asp-page-handler="DeletarImagem">
+                    <input type="hidden" name="ImagemId" value="@imagem.Id" />
+                    <button type="submit">Apagar imagem</button>
+                </form>
+
+            </div>
         }
     </div>
 
     <hr />
 
-    <h2>Alterar imagens</h2>
+    <h2>Adicionar imagens à galeria</h2>
 
     <form method="post"
-          asp-page-handler="AtualizarImagens"
+          asp-page-handler="AdicionarImagens"
           enctype="multipart/form-data">
 
-        <input type="hidden" asp-for="Id" />
-
-        <label>Nova imagem principal</label>
-        <input type="file"
-               asp-for="NovaImagemPrincipal"
-               accept="image/*" />
-
-        <br /><br />
-
-        <label>Adicionar imagens à galeria</label>
         <input type="file"
                asp-for="NovasImagens"
                accept="image/*"
                multiple />
 
-        <br /><br />
-
-        <button type="submit">Salvar imagens</button>
+        <button type="submit">Adicionar imagens</button>
     </form>
 
     <hr />
 
-    <h2>Informações completas</h2>
+    <h2>Alterar imagem principal</h2>
 
-    <h3>Identificação</h3>
-    <p><strong>ID:</strong> @Model.Imaginario.Id</p>
-    <p><strong>Número:</strong> @Model.Imaginario.numero</p>
-    <p><strong>Nome:</strong> @Model.Imaginario.Nome</p>
+    <form method="post"
+          asp-page-handler="AtualizarImagemPrincipal"
+          enctype="multipart/form-data">
 
-    <h3>Informações físicas</h3>
-    <p><strong>Altura:</strong> @Model.Imaginario.Altura</p>
-    <p><strong>Idade:</strong> @Model.Imaginario.Idade</p>
-    <p><strong>Ano:</strong> @Model.Imaginario.Ano</p>
-    <p><strong>Inteligência:</strong> @Model.Imaginario.Inteligencia</p>
-    <p><strong>Força:</strong> @Model.Imaginario.Força</p>
-    <p><strong>Velocidade:</strong> @Model.Imaginario.Velocidade</p>
-    <p><strong>Defesa:</strong> @Model.Imaginario.Defesa</p>
-    <p><strong>Poder:</strong> @Model.Imaginario.Poder</p>
+        <input type="file"
+               asp-for="NovaImagemPrincipal"
+               accept="image/*" />
 
-    <h3>Localização</h3>
-    <p><strong>Local:</strong> @Model.Imaginario.Local</p>
-    <p><strong>Descrição do local:</strong> @Model.Imaginario.DescricaoLocal</p>
+        <button type="submit">Alterar imagem principal</button>
+    </form>
 
-    <h3>História e contexto</h3>
-    <p><strong>Descrição:</strong> @Model.Imaginario.Descricao</p>
-    <p><strong>Contexto histórico:</strong> @Model.Imaginario.ContextoHistorico</p>
-    <p><strong>Descrição do contexto:</strong> @Model.Imaginario.DescricaContexto</p>
+    <hr />
 
-    <h3>Ponto fraco e morte</h3>
-    <p><strong>Ponto fraco:</strong> @Model.Imaginario.PontoFraco</p>
-    <p><strong>Descrição do ponto fraco:</strong> @Model.Imaginario.DescricaoPontoFraco</p>
-    <p><strong>Morte:</strong> @Model.Imaginario.Morte</p>
-    <p><strong>Descrição da morte:</strong> @Model.Imaginario.DescricaoMorte</p>
+    <form method="post" asp-page-handler="EditarInformacoes">
 
-    <h3>Características físicas detalhadas</h3>
-    <p><strong>Descrição dos pontos físicos:</strong> @Model.Imaginario.DescricaodosPontosFisicos</p>
+        <input type="hidden" asp-for="Id" />
 
-    <h3>Poderes</h3>
-    <p><strong>Poder de ataque:</strong> @Model.Imaginario.PoderdeAtaque</p>
-    <p><strong>Poder de defesa:</strong> @Model.Imaginario.PoderdeDefesa</p>
-    <p><strong>Poder de velocidade:</strong> @Model.Imaginario.PoderdeVelocidade</p>
-    <p><strong>Tipo de poderes:</strong> @Model.Imaginario.TipodePoderes</p>
-    <p><strong>Limitações dos poderes:</strong> @Model.Imaginario.LimitidosPoderes</p>
-    <p><strong>Poder total:</strong> @Model.Imaginario.PoderTotal</p>
-    <p><strong>Descrição dos poderes:</strong> @Model.Imaginario.DescricaodosPoderes</p>
+        <h2>Informações completas</h2>
 
-    <h3>Informações de criação</h3>
-    <p><strong>Nome do criador:</strong> @Model.Imaginario.NomedoCriador</p>
-    <p><strong>Data de criação:</strong> @Model.Imaginario.DatadeCriacao</p>
-    <p><strong>Mundo em que se passa:</strong> @Model.Imaginario.MundoemQuesePassar</p>
+        <h3>Identificação</h3>
+
+        <p><strong>ID:</strong> @Model.Imaginario.Id</p>
+
+        <label>Número:</label>
+        <input asp-for="Imaginario.numero" />
+
+        <br />
+
+        <label>Nome:</label>
+        <input asp-for="Imaginario.Nome" />
+
+        <h3>Informações físicas</h3>
+
+        <label>Altura:</label>
+        <input asp-for="Imaginario.Altura" />
+
+        <label>Idade:</label>
+        <input asp-for="Imaginario.Idade" />
+
+        <label>Ano:</label>
+        <input asp-for="Imaginario.Ano" />
+
+        <label>Inteligência:</label>
+        <input asp-for="Imaginario.Inteligencia" />
+
+        <label>Força:</label>
+        <input asp-for="Imaginario.Força" />
+
+        <label>Velocidade:</label>
+        <input asp-for="Imaginario.Velocidade" />
+
+        <label>Defesa:</label>
+        <input asp-for="Imaginario.Defesa" />
+
+        <label>Poder:</label>
+        <input asp-for="Imaginario.Poder" />
+
+        <h3>Localização</h3>
+
+        <label>Local:</label>
+        <input asp-for="Imaginario.Local" />
+
+        <label>Descrição do local:</label>
+        <textarea asp-for="Imaginario.DescricaoLocal"></textarea>
+
+        <h3>História e contexto</h3>
+
+        <label>Descrição:</label>
+        <textarea asp-for="Imaginario.Descricao"></textarea>
+
+        <label>Contexto histórico:</label>
+        <input asp-for="Imaginario.ContextoHistorico" />
+
+        <label>Descrição do contexto:</label>
+        <textarea asp-for="Imaginario.DescricaContexto"></textarea>
+
+        <h3>Ponto fraco e morte</h3>
+
+        <label>Ponto fraco:</label>
+        <input asp-for="Imaginario.PontoFraco" />
+
+        <label>Descrição do ponto fraco:</label>
+        <textarea asp-for="Imaginario.DescricaoPontoFraco"></textarea>
+
+        <label>Morte:</label>
+        <input asp-for="Imaginario.Morte" />
+
+        <label>Descrição da morte:</label>
+        <textarea asp-for="Imaginario.DescricaoMorte"></textarea>
+
+        <h3>Características físicas detalhadas</h3>
+
+        <label>Descrição dos pontos físicos:</label>
+        <textarea asp-for="Imaginario.DescricaodosPontosFisicos"></textarea>
+
+        <h3>Poderes</h3>
+
+        <label>Poder de ataque:</label>
+        <input asp-for="Imaginario.PoderdeAtaque" />
+
+        <label>Poder de defesa:</label>
+        <input asp-for="Imaginario.PoderdeDefesa" />
+
+        <label>Poder de velocidade:</label>
+        <input asp-for="Imaginario.PoderdeVelocidade" />
+
+        <label>Tipo de poderes:</label>
+        <input asp-for="Imaginario.TipodePoderes" />
+
+        <label>Limitações dos poderes:</label>
+        <textarea asp-for="Imaginario.LimitidosPoderes"></textarea>
+
+        <label>Poder total:</label>
+        <input asp-for="Imaginario.PoderTotal" />
+
+        <label>Descrição dos poderes:</label>
+        <textarea asp-for="Imaginario.DescricaodosPoderes"></textarea>
+
+        <h3>Informações de criação</h3>
+
+        <label>Nome do criador:</label>
+        <input asp-for="Imaginario.NomedoCriador" />
+
+        <label>Data de criação:</label>
+        <input asp-for="Imaginario.DatadeCriacao" />
+
+        <label>Mundo em que se passa:</label>
+        <input asp-for="Imaginario.MundoemQuesePassar" />
+
+        <br /><br />
+
+        <button type="submit">Salvar todas as informações</button>
+
+    </form>
+
+    <hr />
 
     <a asp-page="/Index">Voltar à página principal</a>
 }
@@ -113,10 +212,3 @@ else
     <h2>Imaginário não encontrado.</h2>
     <a asp-page="/Index">Voltar</a>
 }
-
-
-
-
-
-
-
